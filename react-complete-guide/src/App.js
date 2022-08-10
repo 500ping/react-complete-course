@@ -27,13 +27,12 @@ const App = () => {
       id: "xx4",
       title: "Title 4",
       amount: "69.96",
-      date: new Date(2019, 8, 9),
+      date: new Date(2020, 8, 9),
     },
   ]);
 
   const addExpenseHandler = (expense) => {
-    console.log(expense);
-    setExpenses((prevExpenses) => [...[prevExpenses, expense]]);
+    setExpenses((prevExpenses) => [expense, ...prevExpenses]);
   };
 
   return (

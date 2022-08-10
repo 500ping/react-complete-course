@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { nanoid } from "nanoid";
 
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
 
 const NewExpense = (props) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const saveExpenseDataHandler = (data) => {
     const expenseData = {
       ...data,
@@ -13,11 +15,23 @@ const NewExpense = (props) => {
     };
 
     props.onAddExpense(expenseData);
+    stopEditingHandler();
+  };
+
+  const stopEditingHandler = () => {
+    setIsEditing((prevValue) => !prevValue);
   };
 
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+      {!isEditing ? (
+        <button onClick={stopEditingHandler}>Add New Expense</button>
+      ) : (
+        <ExpenseForm
+          onSaveExpenseData={saveExpenseDataHandler}
+          onCancel={stopEditingHandler}
+        />
+      )}
     </div>
   );
 };
