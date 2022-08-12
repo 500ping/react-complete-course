@@ -4,9 +4,9 @@ import Card from "../UI/Card";
 import styles from "./UsersList.module.css";
 
 const UserList = (props) => {
-  const usersComponents = props.items.map((user) => {
+  const usersComponents = props.items.map((user, index) => {
     return (
-      <li>
+      <li key={index}>
         {user.username} ({user.age} years old)
       </li>
     );
